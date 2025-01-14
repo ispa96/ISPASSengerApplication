@@ -13,8 +13,8 @@ namespace ISPASSengerApplication {
 	/// <summary>
 	/// Summary for ISPASSenger
 	/// </summary>
-public ref class ISPASSenger : public System::Windows::Forms::Form
-{
+	public ref class ISPASSenger : public System::Windows::Forms::Form
+	{
 	public:
 		ISPASSenger(void)
 		{
@@ -66,7 +66,7 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -267,12 +267,12 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 		}
 #pragma endregion
 
-	/// exitButton
+		/// exitButton
 	private: System::Void exitButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
 
-	/// termsCheckBox
+		   /// termsCheckBox
 	private: System::Void termsCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (termsCheckBox->Checked == true) {
 			isTermsAgreed = true;
@@ -283,9 +283,9 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 			signInButton->Enabled = false;
 		}
 	}
-	
-	/// creem conex la baza de date
-	OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
+
+		   /// creem conex la baza de date
+		   OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
 
 	private: System::Void signInButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
@@ -303,7 +303,7 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 			cmd->Parameters->Add("?", OleDbType::VarWChar)->Value = password;
 
 			OleDbDataReader^ reader = cmd->ExecuteReader();	/// executa comanda si obtine un reader
-			
+
 			if (reader->Read()) {
 				MessageBox::Show("Login successful!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
@@ -316,6 +316,8 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message, "C++ Acces Database Connector", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
+
+		conn->Close();	/// inchidem conexiunea
 	}
-};
+	};
 }
