@@ -8,6 +8,7 @@ namespace ISPASSengerApplication {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Data::OleDb;
 
 	/// <summary>
 	/// Summary for ISPASSenger
@@ -54,8 +55,10 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 
 	private:
 		bool isTermsAgreed = false;
-private: System::Windows::Forms::Panel^ passwordPanel;
 
+
+
+	private: System::Windows::Forms::Panel^ passwordPanel;
 
 	protected:
 
@@ -207,6 +210,7 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			this->signInButton->TabIndex = 10;
 			this->signInButton->Text = L"Sign in";
 			this->signInButton->UseVisualStyleBackColor = false;
+			this->signInButton->Click += gcnew System::EventHandler(this, &ISPASSenger::signInButton_Click);
 			// 
 			// exitButton
 			// 
@@ -279,7 +283,39 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			signInButton->Enabled = false;
 		}
 	}
+	
+	/// creem conex la baza de date
+	OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
 
+	private: System::Void signInButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			conn->Open();	/// deschidem conexiunea la baza de date
 
+			String^ username = usernameTextBox->Text;
+			String^ password = passwordTextBox->Text;
+
+			/// creem comanda sql pentru a veridica username si parola
+			OleDbCommand^ cmd = conn->CreateCommand();
+			cmd->CommandType = CommandType::Text;
+			cmd->CommandText = "SELECT * FROM Users WHERE Username = ? AND Password = ?";
+
+			cmd->Parameters->Add("?", OleDbType::VarWChar)->Value = username;
+			cmd->Parameters->Add("?", OleDbType::VarWChar)->Value = password;
+
+			OleDbDataReader^ reader = cmd->ExecuteReader();	/// executa comanda si obtine un reader
+			
+			if (reader->Read()) {
+				MessageBox::Show("Login successful!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			else {
+				MessageBox::Show("Invalid username or password.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+
+			reader->Close();	/// inchide readerul
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message, "C++ Acces Database Connector", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+	}
 };
 }
