@@ -137,7 +137,7 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			// 
 			// usernamePanel
 			// 
-			this->usernamePanel->Location = System::Drawing::Point(51, 387);
+			this->usernamePanel->Location = System::Drawing::Point(51, 390);
 			this->usernamePanel->Name = L"usernamePanel";
 			this->usernamePanel->Size = System::Drawing::Size(250, 2);
 			this->usernamePanel->TabIndex = 4;
@@ -226,7 +226,7 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			// 
 			// passwordPanel
 			// 
-			this->passwordPanel->Location = System::Drawing::Point(51, 497);
+			this->passwordPanel->Location = System::Drawing::Point(51, 495);
 			this->passwordPanel->Name = L"passwordPanel";
 			this->passwordPanel->Size = System::Drawing::Size(250, 2);
 			this->passwordPanel->TabIndex = 12;
