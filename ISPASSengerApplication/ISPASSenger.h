@@ -19,6 +19,7 @@ public ref class ISPASSenger : public System::Windows::Forms::Form
 		{
 			InitializeComponent();
 			this->DoubleBuffered = true; // Prevent flickering
+
 			//
 			//TODO: Add the constructor code here
 			//
@@ -155,6 +156,7 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			// termsCheckBox
 			// 
 			this->termsCheckBox->BackColor = System::Drawing::Color::Transparent;
+			this->termsCheckBox->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->termsCheckBox->Location = System::Drawing::Point(51, 530);
 			this->termsCheckBox->Name = L"termsCheckBox";
 			this->termsCheckBox->Size = System::Drawing::Size(19, 14);
