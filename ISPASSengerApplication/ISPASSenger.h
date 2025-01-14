@@ -150,6 +150,7 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			this->passwordTextBox->ForeColor = System::Drawing::Color::White;
 			this->passwordTextBox->Location = System::Drawing::Point(51, 467);
 			this->passwordTextBox->Name = L"passwordTextBox";
+			this->passwordTextBox->PasswordChar = '*';
 			this->passwordTextBox->Size = System::Drawing::Size(237, 24);
 			this->passwordTextBox->TabIndex = 5;
 			// 
