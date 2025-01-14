@@ -159,7 +159,7 @@ private: System::Windows::Forms::Panel^ passwordPanel;
 			this->termsCheckBox->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->termsCheckBox->Location = System::Drawing::Point(51, 530);
 			this->termsCheckBox->Name = L"termsCheckBox";
-			this->termsCheckBox->Size = System::Drawing::Size(19, 14);
+			this->termsCheckBox->Size = System::Drawing::Size(13, 14);
 			this->termsCheckBox->TabIndex = 7;
 			this->termsCheckBox->UseVisualStyleBackColor = false;
 			this->termsCheckBox->CheckedChanged += gcnew System::EventHandler(this, &ISPASSenger::termsCheckBox_CheckedChanged);
