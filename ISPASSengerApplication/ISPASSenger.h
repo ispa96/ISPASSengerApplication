@@ -76,7 +76,8 @@ namespace ISPASSengerApplication {
 	private: System::Windows::Forms::TextBox^ createPasswordTextBox;
 	private: System::Windows::Forms::Label^ createrPasswordLabel;
 	private: System::Windows::Forms::Panel^ createUsernamePanel;
-	private: System::Windows::Forms::Button^ createAccountButton;
+	private: System::Windows::Forms::Button^ registerMeButton;
+
 	private: System::Windows::Forms::Button^ returnToBeginingButton;
 
 
@@ -113,7 +114,7 @@ namespace ISPASSengerApplication {
 			this->registerButton = (gcnew System::Windows::Forms::Button());
 			this->createAccountPanel = (gcnew System::Windows::Forms::Panel());
 			this->returnToBeginingButton = (gcnew System::Windows::Forms::Button());
-			this->createAccountButton = (gcnew System::Windows::Forms::Button());
+			this->registerMeButton = (gcnew System::Windows::Forms::Button());
 			this->createUsernamePanel = (gcnew System::Windows::Forms::Panel());
 			this->createPasswordPanel = (gcnew System::Windows::Forms::Panel());
 			this->createPasswordTextBox = (gcnew System::Windows::Forms::TextBox());
@@ -293,7 +294,7 @@ namespace ISPASSengerApplication {
 			this->createAccountPanel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"createAccountPanel.BackgroundImage")));
 			this->createAccountPanel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->createAccountPanel->Controls->Add(this->returnToBeginingButton);
-			this->createAccountPanel->Controls->Add(this->createAccountButton);
+			this->createAccountPanel->Controls->Add(this->registerMeButton);
 			this->createAccountPanel->Controls->Add(this->createUsernamePanel);
 			this->createAccountPanel->Controls->Add(this->createPasswordPanel);
 			this->createAccountPanel->Controls->Add(this->createPasswordTextBox);
@@ -325,22 +326,22 @@ namespace ISPASSengerApplication {
 			this->returnToBeginingButton->UseVisualStyleBackColor = false;
 			this->returnToBeginingButton->Click += gcnew System::EventHandler(this, &ISPASSenger::returnToBeginingButton_Click);
 			// 
-			// createAccountButton
+			// registerMeButton
 			// 
-			this->createAccountButton->BackColor = System::Drawing::Color::Black;
-			this->createAccountButton->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->createAccountButton->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+			this->registerMeButton->BackColor = System::Drawing::Color::Black;
+			this->registerMeButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->registerMeButton->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
-			this->createAccountButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->createAccountButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, System::Drawing::FontStyle::Bold));
-			this->createAccountButton->ForeColor = System::Drawing::Color::White;
-			this->createAccountButton->Location = System::Drawing::Point(38, 589);
-			this->createAccountButton->Name = L"createAccountButton";
-			this->createAccountButton->Size = System::Drawing::Size(230, 44);
-			this->createAccountButton->TabIndex = 7;
-			this->createAccountButton->Text = L"Register Me";
-			this->createAccountButton->UseVisualStyleBackColor = false;
-			this->createAccountButton->Click += gcnew System::EventHandler(this, &ISPASSenger::createAccountButton_Click);
+			this->registerMeButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->registerMeButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, System::Drawing::FontStyle::Bold));
+			this->registerMeButton->ForeColor = System::Drawing::Color::White;
+			this->registerMeButton->Location = System::Drawing::Point(38, 589);
+			this->registerMeButton->Name = L"registerMeButton";
+			this->registerMeButton->Size = System::Drawing::Size(230, 44);
+			this->registerMeButton->TabIndex = 7;
+			this->registerMeButton->Text = L"Register Me";
+			this->registerMeButton->UseVisualStyleBackColor = false;
+			this->registerMeButton->Click += gcnew System::EventHandler(this, &ISPASSenger::registerMeButton_Click);
 			// 
 			// createUsernamePanel
 			// 
@@ -513,9 +514,11 @@ namespace ISPASSengerApplication {
 	
 	private: System::Void registerButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		createAccountPanel->Show();
+		usernameTextBox->Text = "";
+		passwordTextBox->Text = "";
 	}
 
-	private: System::Void createAccountButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void registerMeButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
 			conn->Open();	/// deshciden conexiunea la baza de date
 
