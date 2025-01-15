@@ -20,7 +20,7 @@ namespace ISPASSengerApplication {
 		{
 			InitializeComponent();
 
-			createAccountPanel->Hide();
+			createAccountPanel->Visible = false;
 
 			this->DoubleBuffered = true; // Prevent flickering
 
@@ -56,11 +56,6 @@ namespace ISPASSengerApplication {
 	private: System::Windows::Forms::Button^ signInButton;
 	private: System::Windows::Forms::Button^ exitButton;
 
-	private:
-		bool isTermsAgreed = false;
-
-
-
 	private: System::Windows::Forms::Panel^ passwordPanel;
 	private: System::Windows::Forms::Button^ registerButton;
 	private: System::Windows::Forms::Panel^ createAccountPanel;
@@ -79,9 +74,6 @@ namespace ISPASSengerApplication {
 	private: System::Windows::Forms::Button^ registerMeButton;
 
 	private: System::Windows::Forms::Button^ returnToBeginingButton;
-
-
-
 
 	protected:
 
@@ -460,11 +452,9 @@ namespace ISPASSengerApplication {
 
 	private: System::Void termsCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (termsCheckBox->Checked == true) {
-			isTermsAgreed = true;
 			signInButton->Enabled = true;
 		}
 		else {
-			isTermsAgreed = false;
 			signInButton->Enabled = false;
 		}
 	}
@@ -473,6 +463,16 @@ namespace ISPASSengerApplication {
 	OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
 
 	private: System::Void signInButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (usernameTextBox->Text == "" || passwordTextBox->Text == "") {
+			MessageBox::Show("Invalid username or password.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
+			usernameTextBox->Text = "";
+			passwordTextBox->Text = "";
+			termsCheckBox->Checked = false;
+
+			return;
+		}
+
 		try {
 			conn->Open();	/// deschidem conexiunea la baza de date
 
@@ -509,16 +509,31 @@ namespace ISPASSengerApplication {
 		/// resetam casutele dupa ce apasam sa intram in cont
 		usernameTextBox->Text = "";
 		passwordTextBox->Text = "";
+		termsCheckBox->Checked = false;
 	}
-
 	
 	private: System::Void registerButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		createAccountPanel->Show();
+		createAccountPanel->SuspendLayout();	/// opreste redibuirea temporar
+
+		createAccountPanel->Visible = true;
 		usernameTextBox->Text = "";
 		passwordTextBox->Text = "";
+		termsCheckBox->Checked = false;
+
+		createAccountPanel->ResumeLayout();	/// permite redibuirea dupa ce am facut modificari
 	}
 
 	private: System::Void registerMeButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (createUsernameTextBox->Text == "" || createPasswordTextBox->Text == "") {
+			MessageBox::Show("Invalid username or password.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+
+			usernameTextBox->Text = "";
+			passwordTextBox->Text = "";
+			termsCheckBox->Checked = false;
+
+			return;
+		}
+
 		try {
 			conn->Open();	/// deshciden conexiunea la baza de date
 
@@ -552,11 +567,13 @@ namespace ISPASSengerApplication {
 		createUsernameTextBox->Text = "";
 		createPasswordTextBox->Text = "";
 
-		createAccountPanel->Hide();	/// inchidem panel-ul in care ne cream contul
+		createAccountPanel->Visible = false;	/// inchidem panelul de register
 	}
 
 	private: System::Void returnToBeginingButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		createAccountPanel->Hide();
+		createAccountPanel->Visible = false;
+		createUsernameTextBox->Text = "";
+		createPasswordTextBox->Text = "";
 	}
 };
 }
