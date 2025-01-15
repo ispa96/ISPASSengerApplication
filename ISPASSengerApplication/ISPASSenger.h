@@ -19,6 +19,9 @@ namespace ISPASSengerApplication {
 		ISPASSenger(void)
 		{
 			InitializeComponent();
+
+			createAccountPanel->Hide();
+
 			this->DoubleBuffered = true; // Prevent flickering
 
 			//
@@ -59,6 +62,24 @@ namespace ISPASSengerApplication {
 
 
 	private: System::Windows::Forms::Panel^ passwordPanel;
+	private: System::Windows::Forms::Button^ registerButton;
+	private: System::Windows::Forms::Panel^ createAccountPanel;
+
+	private: System::Windows::Forms::Label^ createrUsernameLabel;
+
+	private: System::Windows::Forms::Label^ createrAccountLabel;
+	private: System::Windows::Forms::TextBox^ createUsernameTextBox;
+
+	private: System::Windows::Forms::Panel^ createPasswordPanel;
+
+
+	private: System::Windows::Forms::TextBox^ createPasswordTextBox;
+	private: System::Windows::Forms::Label^ createrPasswordLabel;
+	private: System::Windows::Forms::Panel^ createUsernamePanel;
+	private: System::Windows::Forms::Button^ createAccountButton;
+
+
+
 
 	protected:
 
@@ -88,6 +109,17 @@ namespace ISPASSengerApplication {
 			this->signInButton = (gcnew System::Windows::Forms::Button());
 			this->exitButton = (gcnew System::Windows::Forms::Button());
 			this->passwordPanel = (gcnew System::Windows::Forms::Panel());
+			this->registerButton = (gcnew System::Windows::Forms::Button());
+			this->createAccountPanel = (gcnew System::Windows::Forms::Panel());
+			this->createAccountButton = (gcnew System::Windows::Forms::Button());
+			this->createUsernamePanel = (gcnew System::Windows::Forms::Panel());
+			this->createPasswordPanel = (gcnew System::Windows::Forms::Panel());
+			this->createPasswordTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->createrPasswordLabel = (gcnew System::Windows::Forms::Label());
+			this->createUsernameTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->createrUsernameLabel = (gcnew System::Windows::Forms::Label());
+			this->createrAccountLabel = (gcnew System::Windows::Forms::Label());
+			this->createAccountPanel->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// usernameLabel
@@ -142,7 +174,7 @@ namespace ISPASSengerApplication {
 			// 
 			this->usernamePanel->Location = System::Drawing::Point(51, 390);
 			this->usernamePanel->Name = L"usernamePanel";
-			this->usernamePanel->Size = System::Drawing::Size(250, 2);
+			this->usernamePanel->Size = System::Drawing::Size(237, 2);
 			this->usernamePanel->TabIndex = 4;
 			// 
 			// passwordTextBox
@@ -156,6 +188,7 @@ namespace ISPASSengerApplication {
 			this->passwordTextBox->PasswordChar = '*';
 			this->passwordTextBox->Size = System::Drawing::Size(237, 24);
 			this->passwordTextBox->TabIndex = 5;
+			this->passwordTextBox->UseSystemPasswordChar = true;
 			// 
 			// termsCheckBox
 			// 
@@ -202,11 +235,11 @@ namespace ISPASSengerApplication {
 			this->signInButton->Enabled = false;
 			this->signInButton->FlatAppearance->BorderSize = 0;
 			this->signInButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->signInButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 20.25F, System::Drawing::FontStyle::Bold));
+			this->signInButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, System::Drawing::FontStyle::Bold));
 			this->signInButton->ForeColor = System::Drawing::Color::White;
 			this->signInButton->Location = System::Drawing::Point(51, 580);
 			this->signInButton->Name = L"signInButton";
-			this->signInButton->Size = System::Drawing::Size(119, 53);
+			this->signInButton->Size = System::Drawing::Size(124, 53);
 			this->signInButton->TabIndex = 10;
 			this->signInButton->Text = L"Sign in";
 			this->signInButton->UseVisualStyleBackColor = false;
@@ -219,11 +252,11 @@ namespace ISPASSengerApplication {
 			this->exitButton->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
 				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
 			this->exitButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->exitButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 20.25F, System::Drawing::FontStyle::Bold));
+			this->exitButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 10.25F, System::Drawing::FontStyle::Bold));
 			this->exitButton->ForeColor = System::Drawing::Color::White;
-			this->exitButton->Location = System::Drawing::Point(202, 580);
+			this->exitButton->Location = System::Drawing::Point(754, 0);
 			this->exitButton->Name = L"exitButton";
-			this->exitButton->Size = System::Drawing::Size(119, 53);
+			this->exitButton->Size = System::Drawing::Size(46, 30);
 			this->exitButton->TabIndex = 11;
 			this->exitButton->Text = L"Exit";
 			this->exitButton->UseVisualStyleBackColor = false;
@@ -233,8 +266,137 @@ namespace ISPASSengerApplication {
 			// 
 			this->passwordPanel->Location = System::Drawing::Point(51, 495);
 			this->passwordPanel->Name = L"passwordPanel";
-			this->passwordPanel->Size = System::Drawing::Size(250, 2);
+			this->passwordPanel->Size = System::Drawing::Size(237, 2);
 			this->passwordPanel->TabIndex = 12;
+			// 
+			// registerButton
+			// 
+			this->registerButton->BackColor = System::Drawing::Color::Black;
+			this->registerButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->registerButton->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->registerButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->registerButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, System::Drawing::FontStyle::Bold));
+			this->registerButton->ForeColor = System::Drawing::Color::White;
+			this->registerButton->Location = System::Drawing::Point(210, 580);
+			this->registerButton->Name = L"registerButton";
+			this->registerButton->Size = System::Drawing::Size(122, 53);
+			this->registerButton->TabIndex = 13;
+			this->registerButton->Text = L"Register";
+			this->registerButton->UseVisualStyleBackColor = false;
+			this->registerButton->Click += gcnew System::EventHandler(this, &ISPASSenger::registerButton_Click);
+			// 
+			// createAccountPanel
+			// 
+			this->createAccountPanel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"createAccountPanel.BackgroundImage")));
+			this->createAccountPanel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->createAccountPanel->Controls->Add(this->createAccountButton);
+			this->createAccountPanel->Controls->Add(this->createUsernamePanel);
+			this->createAccountPanel->Controls->Add(this->createPasswordPanel);
+			this->createAccountPanel->Controls->Add(this->createPasswordTextBox);
+			this->createAccountPanel->Controls->Add(this->createrPasswordLabel);
+			this->createAccountPanel->Controls->Add(this->createUsernameTextBox);
+			this->createAccountPanel->Controls->Add(this->createrUsernameLabel);
+			this->createAccountPanel->Controls->Add(this->createrAccountLabel);
+			this->createAccountPanel->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->createAccountPanel->Font = (gcnew System::Drawing::Font(L"Rockwell", 20, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic))));
+			this->createAccountPanel->Location = System::Drawing::Point(0, 0);
+			this->createAccountPanel->Name = L"createAccountPanel";
+			this->createAccountPanel->Size = System::Drawing::Size(801, 743);
+			this->createAccountPanel->TabIndex = 14;
+			// 
+			// createAccountButton
+			// 
+			this->createAccountButton->BackColor = System::Drawing::Color::Black;
+			this->createAccountButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->createAccountButton->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->createAccountButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->createAccountButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, System::Drawing::FontStyle::Bold));
+			this->createAccountButton->ForeColor = System::Drawing::Color::White;
+			this->createAccountButton->Location = System::Drawing::Point(38, 589);
+			this->createAccountButton->Name = L"createAccountButton";
+			this->createAccountButton->Size = System::Drawing::Size(230, 44);
+			this->createAccountButton->TabIndex = 7;
+			this->createAccountButton->Text = L"Register Me";
+			this->createAccountButton->UseVisualStyleBackColor = false;
+			this->createAccountButton->Click += gcnew System::EventHandler(this, &ISPASSenger::createAccountButton_Click);
+			// 
+			// createUsernamePanel
+			// 
+			this->createUsernamePanel->Location = System::Drawing::Point(38, 472);
+			this->createUsernamePanel->Name = L"createUsernamePanel";
+			this->createUsernamePanel->Size = System::Drawing::Size(263, 2);
+			this->createUsernamePanel->TabIndex = 6;
+			// 
+			// createPasswordPanel
+			// 
+			this->createPasswordPanel->Location = System::Drawing::Point(38, 563);
+			this->createPasswordPanel->Name = L"createPasswordPanel";
+			this->createPasswordPanel->Size = System::Drawing::Size(263, 2);
+			this->createPasswordPanel->TabIndex = 5;
+			// 
+			// createPasswordTextBox
+			// 
+			this->createPasswordTextBox->BackColor = System::Drawing::Color::Black;
+			this->createPasswordTextBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->createPasswordTextBox->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic))));
+			this->createPasswordTextBox->ForeColor = System::Drawing::Color::White;
+			this->createPasswordTextBox->Location = System::Drawing::Point(37, 535);
+			this->createPasswordTextBox->Name = L"createPasswordTextBox";
+			this->createPasswordTextBox->PasswordChar = '*';
+			this->createPasswordTextBox->Size = System::Drawing::Size(263, 24);
+			this->createPasswordTextBox->TabIndex = 4;
+			this->createPasswordTextBox->UseSystemPasswordChar = true;
+			// 
+			// createrPasswordLabel
+			// 
+			this->createrPasswordLabel->AutoSize = true;
+			this->createrPasswordLabel->BackColor = System::Drawing::Color::Black;
+			this->createrPasswordLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->createrPasswordLabel->ForeColor = System::Drawing::Color::White;
+			this->createrPasswordLabel->Location = System::Drawing::Point(35, 500);
+			this->createrPasswordLabel->Name = L"createrPasswordLabel";
+			this->createrPasswordLabel->Size = System::Drawing::Size(80, 18);
+			this->createrPasswordLabel->TabIndex = 3;
+			this->createrPasswordLabel->Text = L"Password";
+			// 
+			// createUsernameTextBox
+			// 
+			this->createUsernameTextBox->BackColor = System::Drawing::Color::Black;
+			this->createUsernameTextBox->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->createUsernameTextBox->Font = (gcnew System::Drawing::Font(L"Rockwell", 15.25F, System::Drawing::FontStyle::Bold));
+			this->createUsernameTextBox->ForeColor = System::Drawing::Color::White;
+			this->createUsernameTextBox->Location = System::Drawing::Point(38, 444);
+			this->createUsernameTextBox->Name = L"createUsernameTextBox";
+			this->createUsernameTextBox->Size = System::Drawing::Size(263, 24);
+			this->createUsernameTextBox->TabIndex = 2;
+			// 
+			// createrUsernameLabel
+			// 
+			this->createrUsernameLabel->AutoSize = true;
+			this->createrUsernameLabel->BackColor = System::Drawing::Color::Black;
+			this->createrUsernameLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 11.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->createrUsernameLabel->ForeColor = System::Drawing::Color::White;
+			this->createrUsernameLabel->Location = System::Drawing::Point(35, 410);
+			this->createrUsernameLabel->Name = L"createrUsernameLabel";
+			this->createrUsernameLabel->Size = System::Drawing::Size(84, 18);
+			this->createrUsernameLabel->TabIndex = 1;
+			this->createrUsernameLabel->Text = L"Username";
+			// 
+			// createrAccountLabel
+			// 
+			this->createrAccountLabel->AutoSize = true;
+			this->createrAccountLabel->BackColor = System::Drawing::Color::Black;
+			this->createrAccountLabel->Font = (gcnew System::Drawing::Font(L"Rockwell", 20, System::Drawing::FontStyle::Bold));
+			this->createrAccountLabel->ForeColor = System::Drawing::Color::White;
+			this->createrAccountLabel->Location = System::Drawing::Point(31, 307);
+			this->createrAccountLabel->Name = L"createrAccountLabel";
+			this->createrAccountLabel->Size = System::Drawing::Size(256, 33);
+			this->createrAccountLabel->TabIndex = 0;
+			this->createrAccountLabel->Text = L"Create an account";
 			// 
 			// ISPASSenger
 			// 
@@ -243,6 +405,8 @@ namespace ISPASSengerApplication {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(801, 743);
+			this->Controls->Add(this->createAccountPanel);
+			this->Controls->Add(this->registerButton);
 			this->Controls->Add(this->passwordPanel);
 			this->Controls->Add(this->exitButton);
 			this->Controls->Add(this->signInButton);
@@ -261,18 +425,18 @@ namespace ISPASSengerApplication {
 			this->Name = L"ISPASSenger";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"ISPASSenger";
+			this->createAccountPanel->ResumeLayout(false);
+			this->createAccountPanel->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 
-		/// exitButton
 	private: System::Void exitButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
 
-		   /// termsCheckBox
 	private: System::Void termsCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		if (termsCheckBox->Checked == true) {
 			isTermsAgreed = true;
@@ -284,8 +448,8 @@ namespace ISPASSengerApplication {
 		}
 	}
 
-		   /// creem conex la baza de date
-		   OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
+	/// creem conex la baza de date
+	OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
 
 	private: System::Void signInButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
@@ -306,6 +470,7 @@ namespace ISPASSengerApplication {
 
 			if (reader->Read()) {
 				MessageBox::Show("Login successful!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				// this->Close();
 			}
 			else {
 				MessageBox::Show("Invalid username or password.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
@@ -316,8 +481,47 @@ namespace ISPASSengerApplication {
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message, "C++ Acces Database Connector", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		}
-
-		conn->Close();	/// inchidem conexiunea
+		finally {
+			conn->Close();	/// inchidem conexiunea
+		}
 	}
-	};
+
+	
+	private: System::Void registerButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		createAccountPanel->Show();
+	}
+
+	private: System::Void createAccountButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			conn->Open();	/// deshciden conexiunea la baza de date
+
+			String^ username = createUsernameTextBox->Text;
+			String^ password = createPasswordTextBox->Text;
+
+			OleDbCommand^ cmd = conn->CreateCommand();	/// cream o comanda SQL pentru a insera date
+			cmd->CommandType = CommandType::Text;
+			cmd->CommandText = "INSERT INTO [Users] (Username, [Password]) VALUES (?, ?)";
+
+			cmd->Parameters->Add("?", OleDbType::VarWChar)->Value = username;
+			cmd->Parameters->Add("?", OleDbType::VarWChar)->Value = password;
+
+			int rowsAffected = cmd->ExecuteNonQuery();	/// executam comanda
+
+			if (rowsAffected > 0) {	/// daca a functionat
+				MessageBox::Show("User added successfully!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			else {	/// daca nu a functionat
+				MessageBox::Show("Failed to add user.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message, "C++ Access Database Connector", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+		finally {
+			conn->Close();	/// inchidem conexiunea
+		}
+
+		createAccountPanel->Hide();	/// inchidem panel-ul in care ne cream contul
+	}
+};
 }
