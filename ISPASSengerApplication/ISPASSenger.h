@@ -77,6 +77,7 @@ namespace ISPASSengerApplication {
 	private: System::Windows::Forms::Label^ createrPasswordLabel;
 	private: System::Windows::Forms::Panel^ createUsernamePanel;
 	private: System::Windows::Forms::Button^ createAccountButton;
+	private: System::Windows::Forms::Button^ returnToBeginingButton;
 
 
 
@@ -111,6 +112,7 @@ namespace ISPASSengerApplication {
 			this->passwordPanel = (gcnew System::Windows::Forms::Panel());
 			this->registerButton = (gcnew System::Windows::Forms::Button());
 			this->createAccountPanel = (gcnew System::Windows::Forms::Panel());
+			this->returnToBeginingButton = (gcnew System::Windows::Forms::Button());
 			this->createAccountButton = (gcnew System::Windows::Forms::Button());
 			this->createUsernamePanel = (gcnew System::Windows::Forms::Panel());
 			this->createPasswordPanel = (gcnew System::Windows::Forms::Panel());
@@ -290,6 +292,7 @@ namespace ISPASSengerApplication {
 			// 
 			this->createAccountPanel->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"createAccountPanel.BackgroundImage")));
 			this->createAccountPanel->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->createAccountPanel->Controls->Add(this->returnToBeginingButton);
 			this->createAccountPanel->Controls->Add(this->createAccountButton);
 			this->createAccountPanel->Controls->Add(this->createUsernamePanel);
 			this->createAccountPanel->Controls->Add(this->createPasswordPanel);
@@ -304,6 +307,23 @@ namespace ISPASSengerApplication {
 			this->createAccountPanel->Name = L"createAccountPanel";
 			this->createAccountPanel->Size = System::Drawing::Size(801, 743);
 			this->createAccountPanel->TabIndex = 14;
+			// 
+			// returnToBeginingButton
+			// 
+			this->returnToBeginingButton->BackColor = System::Drawing::Color::Black;
+			this->returnToBeginingButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->returnToBeginingButton->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+				static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)));
+			this->returnToBeginingButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->returnToBeginingButton->Font = (gcnew System::Drawing::Font(L"Rockwell", 10.25F, System::Drawing::FontStyle::Bold));
+			this->returnToBeginingButton->ForeColor = System::Drawing::Color::White;
+			this->returnToBeginingButton->Location = System::Drawing::Point(744, 0);
+			this->returnToBeginingButton->Name = L"returnToBeginingButton";
+			this->returnToBeginingButton->Size = System::Drawing::Size(56, 25);
+			this->returnToBeginingButton->TabIndex = 8;
+			this->returnToBeginingButton->Text = L"Back";
+			this->returnToBeginingButton->UseVisualStyleBackColor = false;
+			this->returnToBeginingButton->Click += gcnew System::EventHandler(this, &ISPASSenger::returnToBeginingButton_Click);
 			// 
 			// createAccountButton
 			// 
@@ -484,6 +504,10 @@ namespace ISPASSengerApplication {
 		finally {
 			conn->Close();	/// inchidem conexiunea
 		}
+
+		/// resetam casutele dupa ce apasam sa intram in cont
+		usernameTextBox->Text = "";
+		passwordTextBox->Text = "";
 	}
 
 	
@@ -508,10 +532,10 @@ namespace ISPASSengerApplication {
 			int rowsAffected = cmd->ExecuteNonQuery();	/// executam comanda
 
 			if (rowsAffected > 0) {	/// daca a functionat
-				MessageBox::Show("User added successfully!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				MessageBox::Show("Account created successfully!", "Success", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 			else {	/// daca nu a functionat
-				MessageBox::Show("Failed to add user.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show("Failed to create account.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 		catch (Exception^ ex) {
@@ -521,7 +545,15 @@ namespace ISPASSengerApplication {
 			conn->Close();	/// inchidem conexiunea
 		}
 
+		/// resetam casutele dupa ce introducem o data
+		createUsernameTextBox->Text = "";
+		createPasswordTextBox->Text = "";
+
 		createAccountPanel->Hide();	/// inchidem panel-ul in care ne cream contul
+	}
+
+	private: System::Void returnToBeginingButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		createAccountPanel->Hide();
 	}
 };
 }
