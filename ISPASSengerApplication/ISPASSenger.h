@@ -152,6 +152,7 @@ namespace ISPASSengerApplication {
 			this->usernameTextBox->Name = L"usernameTextBox";
 			this->usernameTextBox->Size = System::Drawing::Size(237, 24);
 			this->usernameTextBox->TabIndex = 2;
+			this->usernameTextBox->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &ISPASSenger::usernameTextBox_KeyDown);
 			// 
 			// passwordLabel
 			// 
@@ -184,6 +185,7 @@ namespace ISPASSengerApplication {
 			this->passwordTextBox->Size = System::Drawing::Size(237, 24);
 			this->passwordTextBox->TabIndex = 5;
 			this->passwordTextBox->UseSystemPasswordChar = true;
+			this->passwordTextBox->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &ISPASSenger::passwordTextBox_KeyDown);
 			// 
 			// termsCheckBox
 			// 
@@ -195,6 +197,7 @@ namespace ISPASSengerApplication {
 			this->termsCheckBox->TabIndex = 7;
 			this->termsCheckBox->UseVisualStyleBackColor = false;
 			this->termsCheckBox->CheckedChanged += gcnew System::EventHandler(this, &ISPASSenger::termsCheckBox_CheckedChanged);
+			this->termsCheckBox->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &ISPASSenger::termsCheckBox_KeyDown);
 			// 
 			// termsLabel1
 			// 
@@ -361,6 +364,7 @@ namespace ISPASSengerApplication {
 			this->createPasswordTextBox->Size = System::Drawing::Size(263, 24);
 			this->createPasswordTextBox->TabIndex = 4;
 			this->createPasswordTextBox->UseSystemPasswordChar = true;
+			this->createPasswordTextBox->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &ISPASSenger::createPasswordTextBox_KeyDown);
 			// 
 			// createrPasswordLabel
 			// 
@@ -385,6 +389,7 @@ namespace ISPASSengerApplication {
 			this->createUsernameTextBox->Name = L"createUsernameTextBox";
 			this->createUsernameTextBox->Size = System::Drawing::Size(263, 24);
 			this->createUsernameTextBox->TabIndex = 2;
+			this->createUsernameTextBox->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &ISPASSenger::createUsernameTextBox_KeyDown);
 			// 
 			// createrUsernameLabel
 			// 
@@ -574,6 +579,35 @@ namespace ISPASSengerApplication {
 		createAccountPanel->Visible = false;
 		createUsernameTextBox->Text = "";
 		createPasswordTextBox->Text = "";
+	}
+
+	private: System::Void usernameTextBox_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		if (e->KeyValue == (int)Keys::Enter) {
+			passwordTextBox->Focus();	/// se muta cursorul pe passwordTextBox
+		}
+	}
+
+	private: System::Void passwordTextBox_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		if (e->KeyValue == (int)Keys::Enter) {
+			signInButton->PerformClick();	/// se muta cursorul pe signInButton si se apasa click automat
+		}
+	}
+
+	private: System::Void createUsernameTextBox_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		if (e->KeyValue == (int)Keys::Enter) {
+			createPasswordTextBox->Focus();
+		}
+	}
+	private: System::Void createPasswordTextBox_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		if (e->KeyValue == (int)Keys::Enter) {
+			registerMeButton->PerformClick();
+		}
+	}
+
+	private: System::Void termsCheckBox_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		if (e->KeyValue == (int)Keys::Enter) {
+			signInButton->PerformClick();
+		}
 	}
 };
 }
