@@ -18,9 +18,15 @@
     <ClCompile Include="ISPASSenger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TermsAndConditionsForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ISPASSenger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TermsAndConditionsForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

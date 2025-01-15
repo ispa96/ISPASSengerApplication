@@ -1,5 +1,7 @@
 #pragma once
 
+#include "TermsAndConditionsForm.h"
+
 namespace ISPASSengerApplication {
 
 	using namespace System;
@@ -216,6 +218,7 @@ namespace ISPASSengerApplication {
 			// 
 			this->termsLabel2->AutoSize = true;
 			this->termsLabel2->BackColor = System::Drawing::Color::Transparent;
+			this->termsLabel2->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->termsLabel2->Font = (gcnew System::Drawing::Font(L"Rockwell", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->termsLabel2->ForeColor = System::Drawing::Color::Blue;
@@ -224,6 +227,7 @@ namespace ISPASSengerApplication {
 			this->termsLabel2->Size = System::Drawing::Size(157, 17);
 			this->termsLabel2->TabIndex = 9;
 			this->termsLabel2->Text = L"Terms and Condition";
+			this->termsLabel2->Click += gcnew System::EventHandler(this, &ISPASSenger::termsLabel2_Click);
 			// 
 			// signInButton
 			// 
@@ -464,8 +468,8 @@ namespace ISPASSengerApplication {
 		}
 	}
 
-	/// creem conex la baza de date
-	OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
+		   /// creem conex la baza de date
+		   OleDbConnection^ conn = gcnew OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\Users\\ispas\\Documents\\UsersDatabase.accdb");
 
 	private: System::Void signInButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (usernameTextBox->Text == "" || passwordTextBox->Text == "") {
@@ -516,7 +520,7 @@ namespace ISPASSengerApplication {
 		passwordTextBox->Text = "";
 		termsCheckBox->Checked = false;
 	}
-	
+
 	private: System::Void registerButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		createAccountPanel->SuspendLayout();	/// opreste redibuirea temporar
 
@@ -608,6 +612,10 @@ namespace ISPASSengerApplication {
 		if (e->KeyValue == (int)Keys::Enter) {
 			signInButton->PerformClick();
 		}
+	}
+	private: System::Void termsLabel2_Click(System::Object^ sender, System::EventArgs^ e) {
+		TermsAndConditionsForm termsForm;
+		termsForm.ShowDialog();
 	}
 };
 }

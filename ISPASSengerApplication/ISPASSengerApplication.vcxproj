@@ -127,15 +127,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ISPASSenger.cpp" />
+    <ClCompile Include="TermsAndConditionsForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ISPASSenger.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="TermsAndConditionsForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ISPASSenger.resx">
       <DependentUpon>ISPASSenger.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TermsAndConditionsForm.resx">
+      <DependentUpon>TermsAndConditionsForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
